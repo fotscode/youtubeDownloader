@@ -16,8 +16,8 @@ folder = "C:/Users/cacut/Desktop/projects/youtubeDownloader/videos"
 
 def downloadPlaylist():
     playlist_url = url.get()
-    playlist = pytube.contrib.playlist.Playlist(playlist_url)
-    listOfUrls = playlist.video_urls
+    playlist = pytube.contrib.playlist.Playlist(playlist_url) # gets playlist object
+    listOfUrls = playlist.video_urls # makes a list of all the video's urls contained in the playlist
     for videoUrl in listOfUrls:
         try:
             yt = pytube.YouTube(videoUrl)
@@ -27,16 +27,16 @@ def downloadPlaylist():
             
             new_file=title+".mp3"
             os.chdir(folder)
-            os.rename(out_file,new_file)
-            notifDownload.config(fg="green",text="Download Completed")
+            os.rename(out_file,new_file) # renames file, .mp4 to .mp3
+            notifDownload.config(fg="green",text="Download Completed") # writes in green if succeeded
         except Exception as e:
             print(e)
-            notifDownload.config(fg="red",text="Video couldn't be downloaded")
+            notifDownload.config(fg="red",text="Video couldn't be downloaded") # writes in red if failed
 
 def searchPath():
     global folder
     folder = filedialog.askdirectory()
-    notifPath.config(fg="green",text=folder)
+    notifPath.config(fg="green",text=folder) # writes in green the folder directory 
 
 #GUI
 
