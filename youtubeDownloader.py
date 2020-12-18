@@ -20,9 +20,9 @@ def downloadPlaylist():
     listOfUrls = playlist.video_urls # makes a list of all the video's urls contained in the playlist
     for videoUrl in listOfUrls:
         try:
-            yt = pytube.YouTube(videoUrl)
+            yt = pytube.YouTube(videoUrl) # gets video object
             title = yt.title
-            video = yt.streams.filter(only_audio=True).first()
+            video = yt.streams.filter(only_audio=True).first() # gets the video file
             out_file=video.download(folder)
             
             new_file=title+".mp3"
