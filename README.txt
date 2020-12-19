@@ -1,3 +1,10 @@
-Hey! Welcome to my youtube downloader with a simple GUI using tkinter and pytube to use the API of YouTube.
+# YouTube Playlist Downloader
 
-For now you can paste your YouTube playlist url and the program will download the whole playlist to the directory that you selected!
+## What it is?
+A simple GUI using tkinter and pytube to use the API of YouTube.
+
+## How it works?
+You provide the playlist url and select the directory where you want to save the playlist, it downloads every video with only audio
+
+## Program running
+![alt text]()
