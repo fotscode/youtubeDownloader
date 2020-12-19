@@ -30,7 +30,6 @@ def downloadVideo(videoUrl):
 
 def downloadPlaylist():
     playlist_url = url.get()
-<<<<<<< HEAD
     try:
         playlist = pytube.contrib.playlist.Playlist(playlist_url) # gets playlist object
         listOfUrls = playlist.video_urls # makes a list of all the video's urls contained in the playlist
@@ -39,33 +38,11 @@ def downloadPlaylist():
     except Exception as e:
         print(e)
         notifDownload.config(fg="red",text="Link isn't valid")
-=======
-    playlist = pytube.contrib.playlist.Playlist(playlist_url) # gets playlist object
-    listOfUrls = playlist.video_urls # makes a list of all the video's urls contained in the playlist
-    for videoUrl in listOfUrls:
-        try:
-            yt = pytube.YouTube(videoUrl) # gets video object
-            title = yt.title
-            video = yt.streams.filter(only_audio=True).first() # gets the video file
-            out_file=video.download(folder)
-            
-            new_file=title+".mp3"
-            os.chdir(folder)
-            os.rename(out_file,new_file) # renames file, .mp4 to .mp3
-            notifDownload.config(fg="green",text="Download Completed") # writes in green if succeeded
-        except Exception as e:
-            print(e)
-            notifDownload.config(fg="red",text="Video couldn't be downloaded") # writes in red if failed
->>>>>>> 4f6ad015014c6c0a06d10cbeb00ee9ffbbbb63a8
 
 def searchPath():
     global folder
     folder = filedialog.askdirectory()
-<<<<<<< HEAD
     notifPath.config(text=folder)# writes in green the folder directory 
-=======
-    notifPath.config(fg="green",text=folder) # writes in green the folder directory 
->>>>>>> 4f6ad015014c6c0a06d10cbeb00ee9ffbbbb63a8
 
 #GUI
 
