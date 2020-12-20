@@ -15,6 +15,12 @@ folder = os.getcwd()
 
 #Functions
 
+def stripList(listFileNames):
+    listFileNamesStripped=[]
+    for fileName in listFileNames:
+        listFileNamesStripped.append(fileName.strip(".mp3"))
+    return listFileNamesStripped
+ 
 
 def downloadVideo(video):
     try: 
@@ -32,7 +38,13 @@ def downloadVideoButton():
     video_url = url.get()
     try:
         video = pytube.YouTube(video_url)
-        downloadVideo(video)
+        os.chdir(folder)
+        listFileNames=os.listdir('.') # makes a list of all the files in the current directory 
+        listFileNamesStripped = stripList(listFileNames) # strips extension
+        if video.title not in listFileNamesStripped: # checks if it's repeated
+            downloadVideo(video)
+        else:
+            notifDownload.config(fg="red",text="Song repeated: "+video.title)
     except Exception as e:
         print(e)
         notifDownload.config(fg="red",text="Video couldn't be downloaded")
@@ -42,17 +54,15 @@ def downloadPlaylistButton():
     try:
         playlist = pytube.contrib.playlist.Playlist(playlist_url) # gets playlist object
         listOfVideos = playlist.videos # makes a list of all the video's objects contained in the playlist
+
         os.chdir(folder)
         listFileNames=os.listdir('.') # makes a list of all the files in the current directory
-        listFileNamesStripped=[]
+        listFileNamesStripped = stripList(listFileNames) # strips extension
 
-        for fileName in listFileNames:
-            listFileNamesStripped.append(fileName.strip(".mp3")) # removes ".mp3" from string
 
-        # here checks if there are repeated songs
         for video in listOfVideos:
             title = video.title
-            if title not in listFileNamesStripped:
+            if title not in listFileNamesStripped: # here checks if there are repeated songs
                 downloadVideo(video)
             else:
                 notifDownload.config(fg="red",text="Song Repeated: "+title)
