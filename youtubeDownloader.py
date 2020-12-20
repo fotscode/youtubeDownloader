@@ -6,7 +6,7 @@ import pytube
 #Main Screen
 master = Tk()
 master.title("YouTube Downloader")
-master.iconbitmap(r'youtube.ico')
+master.iconbitmap(r'images/youtube.ico')
 master.configure(bg="#FFBC42")
 #Default folder
 folder = os.getcwd()
