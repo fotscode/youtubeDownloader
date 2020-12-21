@@ -74,7 +74,10 @@ def downloadPlaylistButton():
 def searchPath():
     global folder
     folder = filedialog.askdirectory()
-    notifPath.config(text=folder)# writes in green the folder directory 
+    if folder == "":
+        notifPath.config(text="Directory not selected")
+    else:
+        notifPath.config(text=folder)# writes in green the folder directory 
 
 #GUI
 
